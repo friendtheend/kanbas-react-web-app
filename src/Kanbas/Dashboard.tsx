@@ -10,7 +10,6 @@ export default function Dashboard() {
                 <div className="wd-dashboard-course">
                     <Link className="wd-dashboard-course-link"
                         to="/Kanbas/Courses/1234/Home">
-
                         <img src="https://variety.com/wp-content/uploads/2024/02/Screen-Shot-2024-02-28-at-12.40.18-PM.png?w=1000&h=667&crop=1" width={200} />
                         <div>
                             <h5>
