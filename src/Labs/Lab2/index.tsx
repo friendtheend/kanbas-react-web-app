@@ -2,12 +2,8 @@ import React from "react";
 
 export default function Lab2() {
     return (
-        <div id="wd-lab1">
-            <h2>Lab 1</h2>
-            <h3>HTML Examples</h3>
-            <div id="wd-h-tag"> ... </div>
-            <div id="wd-p-tag"> ... </div>
-            <div id="wd-lists"> ... </div>
+        <div id="wd-lab2">
+            <h2>Lab 2</h2>
             <div id="wd-tables">
                 <h4>Table Tag</h4>
                 <table border={1} width="100%">
