@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function TOC() {
     return (
         <ul>
-            <h1>Yifeng Lu</h1>
+            <h1>Yifeng Lu Section:3</h1>
             <li><Link to="/Labs">Labs(back to landing page)</Link></li>
             <li><Link to="/Labs/Lab1">Lab 1</Link></li>
             <li><Link to="/Labs/Lab2">Lab 2</Link></li>
