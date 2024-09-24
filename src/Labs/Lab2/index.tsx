@@ -1,5 +1,6 @@
 import React from "react";
 import './index.css';
+import ReactIconsSampler from "./ReactIcons";
 
 
 export default function Lab2() {
@@ -315,10 +316,19 @@ wd-flex-grow-1">
                         </div>
                     </div>
                 </div>
+                <div>
+                    <ReactIconsSampler />
+                </div>
+
+
+
+
+
+
+
+
 
             </div>}
-
         </div>
-
     );
 }
