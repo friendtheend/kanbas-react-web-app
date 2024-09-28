@@ -4,6 +4,8 @@ import React from "react";
 import Dashboard from "./Dashboard";
 import KanbasNavigation from "./Navigation";
 import Courses from "./Courses";
+import "./styles.css";
+
 
 export default function Kanbas() {
     return (
@@ -14,6 +16,7 @@ export default function Kanbas() {
             <KanbasNavigation />
             {/* </td>
                     <td valign="top"> */}
+                     <div className="wd-main-content-offset p-3">
 
             <Routes>
                 <Route path="/Account/*" element={<Account />} />
@@ -27,6 +30,7 @@ export default function Kanbas() {
             {/* </td>
                 </tr> */}
             {/* </table> */}
+        </div>
         </div>
     );
 }
