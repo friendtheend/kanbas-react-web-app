@@ -5,7 +5,7 @@ import Dashboard from "./Dashboard";
 import KanbasNavigation from "./Navigation";
 import Courses from "./Courses";
 import "./styles.css";
-
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 export default function Kanbas() {
     return (
@@ -16,21 +16,21 @@ export default function Kanbas() {
             <KanbasNavigation />
             {/* </td>
                     <td valign="top"> */}
-                     <div className="wd-main-content-offset p-3">
+            <div className="wd-main-content-offset p-3">
 
-            <Routes>
-                <Route path="/Account/*" element={<Account />} />
-                <Route path="/" element={<Navigate to="/Kanbas/Account" />} />
-                <Route path="/Dashboard" element={<Dashboard />} />
-                <Route path="/Courses/:cid/*" element={<Courses />} />
-                <Route path="/Calendar" element={<h1>Calendar</h1>} />
-                <Route path="/Inbox" element={<h1>Inbox</h1>} />
-            </Routes>
+                <Routes>
+                    <Route path="/Account/*" element={<Account />} />
+                    <Route path="/" element={<Navigate to="/Kanbas/Account" />} />
+                    <Route path="/Dashboard" element={<Dashboard />} />
+                    <Route path="/Courses/:cid/*" element={<Courses />} />
+                    <Route path="/Calendar" element={<h1>Calendar</h1>} />
+                    <Route path="/Inbox" element={<h1>Inbox</h1>} />
+                </Routes>
 
-            {/* </td>
+                {/* </td>
                 </tr> */}
-            {/* </table> */}
-        </div>
+                {/* </table> */}
+            </div>
         </div>
     );
 }
