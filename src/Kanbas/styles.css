@@ -1,0 +1,78 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body * {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@media (min-width: 768px) {
+  #wd-kanbas .wd-main-content-offset {
+    padding-left: 140px !important;
+  }
+}
+
+.list-group.wd>.list-group-item.active {
+  color: black;
+  background-color: white;
+  border-left: 3px solid black !important;
+}
+
+.btn-secondary {
+  --bs-btn-color: #000 !important;
+  --bs-btn-bg: #c7cdd1 !important;
+  --bs-btn-border-color: #c7cdd1 !important;
+  --bs-btn-hover-color: #fff !important;
+}
+
+.bg-secondary {
+  --bs-secondary-rgb: 199, 205, 209;
+}
+
+.list-group-item {
+  --bs-list-group-border-color: gray;
+}
+
+.wd-lesson {
+  border-left: 3px solid green !important;
+}
+
+#wd-assignments {
+  font-family: Arial, sans-serif;
+}
+
+.input-group-text {
+  background-color: #f0f0f0;
+}
+
+#wd-add-assignment-group,
+#wd-add-assignment {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.wd-assignment-list-item {
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+
+.wd-assignment-link {
+  font-size: 1.2em;
+}
+
+.text-secondary {
+  font-weight: bold;
+}
+
+.wd-assignments-title {
+  font-size: 1.5em;
+}
+
+.border-success {
+  border-color: #28a745 !important;
+}
+
+.list-group-item {
+  border-bottom: 1px solid #e5e5e5;
+}

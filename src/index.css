@@ -11,3 +11,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/*p {
+background-color: blue;
+color: white;}*/
+p#wd-id-selector-1 {
+  background-color: red;
+  color: white;
+}
+
+p#wd-id-selector-2 {
+  background-color: yellow;
+  color: black;
+}
