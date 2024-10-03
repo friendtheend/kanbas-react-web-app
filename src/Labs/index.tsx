@@ -14,6 +14,7 @@ export default function Labs() {
         <Route path="Lab2" element={<Lab2 />} />
         <Route path="Lab3" element={<Lab3 />} />
         <Route path="/" element={<div>Select a lab from the list</div>} />
+        <Route path="/" element={<div>Yifeng Lu</div>} />
       </Routes>
     </div>
   );
