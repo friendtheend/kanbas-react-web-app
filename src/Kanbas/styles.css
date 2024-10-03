@@ -37,3 +37,42 @@ body * {
 .wd-lesson {
   border-left: 3px solid green !important;
 }
+
+#wd-assignments {
+  font-family: Arial, sans-serif;
+}
+
+.input-group-text {
+  background-color: #f0f0f0;
+}
+
+#wd-add-assignment-group,
+#wd-add-assignment {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.wd-assignment-list-item {
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+
+.wd-assignment-link {
+  font-size: 1.2em;
+}
+
+.text-secondary {
+  font-weight: bold;
+}
+
+.wd-assignments-title {
+  font-size: 1.5em;
+}
+
+.border-success {
+  border-color: #28a745 !important;
+}
+
+.list-group-item {
+  border-bottom: 1px solid #e5e5e5;
+}
