@@ -1,64 +1,83 @@
 import React from "react";
+import VariablesAndConstants from "./VariablesAndConstants";
+import VariableTypes from "./VariableTypes";
+import BooleanVariables from "./BooleanVariables";
+import IfElse from "./IfElse";
+import TernaryOperator from "./TernaryOperator";
+import ConditionalOutputIfElse from "./ConditionalOutputIfElse";
+import ConditionalOutputInline from "./ConditionalOutputInline";
+import LegacyFunctions from "./LegacyFunctions";
+import ArrowFunctions from "./ArrowFunctions";
+import ImpliedReturn from "./ImpliedReturn";
+import TemplateLiterals from "./TemplateLiterals";
+import SimpleArrays from "./SimpleArrays";
+import ArrayIndexAndLength from "./ArrayIndexAndLength";
+import AddingAndRemovingToFromArrays from "./AddingAndRemovingToFromArrays";
+import ForLoops from "./ForLoops";
+import MapFunction from "./MapFunction";
+import FindFunction from "./FindFunction";
+import FindIndex from "./FindIndex";
+import FilterFunction from "./FilterFunction";
+import JsonStringify from "./JsonStringify";
+import House from "./House";
+import TodoItem from "./todos/TodoItem";
+import TodoList from "./todos/TodoList";
+import Spreading from "./Spreading";
+import Destructing from "./Destructing";
+import FunctionDestructing from "./FunctionDestructing";
+import DestructingImports from "./DestructingImports";
+import Classes from "./Classes";
+import Styles from "./Styles";
+import Add from "./Add";
+import Square from "./Square";
+import Highlight from "./Highlight";
+import AddPathParameters from "./AddPathParameters";
+import PathParameters from "./PathParameters";
 
 export default function Lab3() {
+    console.log('Hello World!');
     return (
-        <><><><><><><><><><div id="wd-images">
-            <h2>Lab 3</h2>
-            <h4>Image tag</h4>
-            Loading an image from the internet:
-            <br />
-            <img id="wd-starship"
-                width="400px"
-                src="https://www.staradvertiser.com/wp-content/uploads/2021/08/web1_Starship-gap2.jpg" />
-            <br />
-            Loading a local image:
-            <br />
-            <img id="wd-teslabot" src="teslabot.png" height="200px" />
-        </div><div id="wd-forms">
-                <h4>Form Elements</h4>
-                <form id="wd-text-fields">
-                    <h5>Text Fields</h5>
-                    <label htmlFor="wd-text-fields-username">Username:</label>
-                    <input id="wd-text-fields-username" placeholder="jdoe" /> <br />
-                    <label htmlFor="wd-text-fields-password">Password:</label>
-                    <input type="password" id="wd-text-fields-password" value="123@#$asd" />
-                    <br />
-                    <label htmlFor="wd-text-fields-first-name">First name:</label>
-                    <input type="text" id="wd-text-fields-first-name" title="John" /> <br />
-                    <label htmlFor="wd-text-fields-last-name">Last name:</label>
-                    <input type="text" id="wd-text-fields-last-name" placeholder="Doe"
-                        value="Wonderland" title="The last name" />
-                    {/* copy rest of form elements here  */}
-                </form>
-            </div></><h5>Text boxes</h5><label>Biography:</label><br /><textarea id="wd-textarea" cols={30} rows={10}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea></><h5 id="wd-buttons">Buttons</h5><button id="wd-all-good" onClick={() => alert("Life is Good!")} type="button">
-                Hello World!
-            </button></><h5>File upload</h5><input id="wd-upload" type="file" /></><h5 id="wd-radio-buttons">Radio buttons</h5><label>Favorite movie genre:</label><br /><input type="radio" name="radio-genre" id="wd-radio-comedy" /><label htmlFor="wd-radio-comedy">Comedy</label><br /><input type="radio" name="radio-genre" id="wd-radio-drama" /><label htmlFor="wd-radio-drama">Drama</label><br /><input type="radio" name="radio-genre" id="wd-radio-scifi" /><label htmlFor="wd-radio-scifi">Science Fiction</label><br /><input type="radio" name="radio-genre" id="wd-radio-fantasy" /><label htmlFor="wd-radio-fantasy">Fantasy</label></><h5 id="wd-checkboxes">Checkboxes</h5><label>Favorite movie genre:</label><br /><input type="checkbox" name="check-genre" id="wd-chkbox-comedy" /><label htmlFor="wd-chkbox-comedy">Comedy</label><br /><input type="checkbox" name="check-genre" id="wd-chkbox-drama" /><label htmlFor="wd-chkbox-drama">Drama</label><br /><input type="checkbox" name="check-genre" id="wd-chkbox-scifi" /><label htmlFor="wd-chkbox-scifi">Science Fiction</label><br /><input type="checkbox" name="check-genre" id="wd-chkbox-fantasy" /><label htmlFor="wd-chkbox-fantasy">Fantasy</label></><h4 id="wd-dropdowns">Dropdowns</h4><h5>Select one</h5><label htmlFor="wd-select-one-genre"> Favorite movie genre: </label><br /><select id="wd-select-one-genre">
-                <option value="COMEDY">Comedy</option>
-                <option value="DRAMA">Drama</option>
-                <option selected value="SCIFI">
-                    Science Fiction</option>
-                <option value="FANTASY">Fantasy</option>
-            </select><h5>Select many</h5><label htmlFor="wd-select-many-genre"> Favorite movie genres: </label><br /><select id="wd-select-many-genre" multiple>
-                <option selected value="COMEDY">Comedy</option>
-                <option value="DRAMA">Drama</option>
-                <option selected value="SCIFI">
-                    Science Fiction</option>
-                <option value="FANTASY">Fantasy</option>
-            </select></><h4>Other HTML field types</h4><label htmlFor="wd-text-fields-email"> Email: </label><input type="email"
-                placeholder="jdoe@somewhere.com"
-                id="wd-text-fields-email" /><br /><label htmlFor="wd-text-fields-salary-start"> Starting salary:
-            </label><input type="number"
-                id="wd-text-fields-salary-start"
-                placeholder="1000"
-                value="100000" /><br /><label htmlFor="wd-text-fields-rating"> Rating: </label><input type="range" id="wd-text-fields-rating"
-                    placeholder="Doe"
-                    max="5"
-                    value="4" /><br /><label htmlFor="wd-text-fields-dob"> Date of birth: </label><input type="date"
-                        id="wd-text-fields-dob"
-                        value="2000-01-21" /><br />
-            <h4>Anchor tag</h4>
-        </><a href="aa.com">
-                click here :American Airlines</a></>
-
+        <div id="wd-lab3">
+            <h3>Lab 3</h3>
+            <VariablesAndConstants />
+            <VariableTypes />
+            <BooleanVariables />
+            <IfElse />
+            <TernaryOperator />
+            <ConditionalOutputIfElse />
+            <ConditionalOutputInline />
+            <LegacyFunctions />
+            <ArrowFunctions />
+            <ImpliedReturn />
+            <TemplateLiterals />
+            <SimpleArrays />
+            <ArrayIndexAndLength />
+            <AddingAndRemovingToFromArrays />
+            <ForLoops />
+            <MapFunction />
+            <FindFunction />
+            <FindIndex />
+            <FilterFunction />
+            <JsonStringify />
+            <House />
+            <TodoItem />
+            <TodoList />
+            <Spreading />
+            <Destructing />
+            <FunctionDestructing />
+            <DestructingImports />
+            <Classes />
+            <Styles />
+            <Add a={3} b={4} />
+            <h4>Square of 4</h4>
+            <Square>4</Square>
+            <hr />
+            <Highlight>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipitratione eaque illo minus cum, saepe totam
+                vel nihil repellat nemo explicabo excepturi consectetur. Modi omnis minus sequi maiores, provident voluptates.
+            </Highlight>
+            <hr />
+            <PathParameters />
+        </div>
     );
 }
