@@ -1,14 +1,21 @@
-
 import React from 'react';
+import { useState, useEffect } from "react";
 import { BsCheckCircle, BsThreeDotsVertical, BsGripVertical } from 'react-icons/bs'; // React Icons
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap for spacing
 import LessonControlButtons from '../Modules/LessonControlButtons';
 import AssControlButtons from './AssControlButtons';
 import { SlNote } from "react-icons/sl";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import { useParams } from "react-router";
+import * as db from "../../Database";
+import { Link } from "react-router-dom";
+
 
 
 export default function Assignments() {
+    const { cid } = useParams();
+    const assignments = db.assignments;
+
     return (
         <div id="wd-assignments" className="p-4">
             <div className="d-flex justify-content-between align-items-center mb-3">
@@ -32,9 +39,6 @@ export default function Assignments() {
                 </div>
             </div>
 
-
-
-
             <div className="wd-module list-group-item p-0 mb-5 fs-5 border border-3 border-gray">
                 <div className="wd-title p-3 ps-2 bg-secondary d-flex justify-content-between align-items-center">
                     <div>
@@ -47,8 +51,43 @@ export default function Assignments() {
                     </div>
                 </div>
 
+                <ul className="list-group">
+                    {assignments
+                        .filter((assignment: any) => assignment.course === cid)
+                        .map((assignment: any) => (
+                            <li key={assignment._id} className="list-group-item d-flex justify-content-between align-items-center" style={{ borderLeft: "4px solid green", borderBottom: "1px solid black" }}>
+                                <div className="d-flex align-items-center">
+                                    <BsGripVertical className="me-2 fs-3" />
+                                    <SlNote />
+                                    <i className="bi bi-file-earmark-text me-2 fs-5"></i>
+                                    <div>
+                                        <Link
+                                            className="wd-assignment-link fw-bold text-primary"
+                                            to={`/Kanbas/Courses/${cid}/Assignments/${assignment._id}`}
+                                        >
+                                            {assignment.title}
+                                        </Link>
+                                        <p className="mb-0">
+                                            <span className="text-danger" style={{ display: "inline" }}>{assignment.description}</span> |
+                                            <strong> Not available until: {assignment.availableDate}</strong> |
+                                            <strong> Due: {assignment.dueDate}</strong> |
+                                            <span className="fw-bold text-secondary"> {assignment.points} pts</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="d-flex align-items-center">
+                                    <BsCheckCircle className="text-success me-3 fs-4" />
+                                    <BsThreeDotsVertical className="fs-5" />
+                                </div>
+                            </li>
+                        ))}
+                </ul>
+
+
+
+
                 {/* Assignment A1 */}
-                <li className="list-group-item d-flex justify-content-between align-items-center" style={{ borderLeft: "4px solid green", borderBottom: "1px solid black" }}>
+                {/* <li className="list-group-item d-flex justify-content-between align-items-center" style={{ borderLeft: "4px solid green", borderBottom: "1px solid black" }}>
                     <div className="d-flex align-items-center">
                         <BsGripVertical className="me-2 fs-3" />
                         <SlNote />
@@ -68,12 +107,9 @@ export default function Assignments() {
                         <BsCheckCircle className="text-success me-3 fs-4" />
                         <BsThreeDotsVertical className="fs-5" />
                     </div>
-                </li>
+                </li> */}
 
-
-
-
-                {/* Assignment A2 */}
+                {/* Assignment A2
                 <li className="list-group-item d-flex justify-content-between align-items-center " style={{ borderLeft: "4px solid green", borderBottom: "1px solid black" }}>
                     <div className="d-flex align-items-center">
                         <BsGripVertical className="me-2 fs-3" />
@@ -96,7 +132,7 @@ export default function Assignments() {
                     </div>
                 </li>
 
-                {/* Assignment A3 */}
+                // a3
                 <li className="list-group-item d-flex justify-content-between align-items-center " style={{ borderLeft: "4px solid green", borderBottom: "1px solid black" }}>
                     <div className="d-flex align-items-center">
 
@@ -118,9 +154,11 @@ export default function Assignments() {
                         <BsCheckCircle className="text-success me-3 fs-4" />
                         <BsThreeDotsVertical className="fs-5" />
                     </div>
-                </li>
+                </li> */}
 
             </div>
         </div >
     );
 }
+
+
