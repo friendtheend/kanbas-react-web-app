@@ -98,6 +98,20 @@
         "totalActivity": "12:23:34"
     },
     {
+        "_id": "345",
+        "username": "abc",
+        "password": "123",
+        "firstName": "Natasha",
+        "lastName": "Romanoff",
+        "email": "natasha@avengers.com",
+        "dob": "1984-11-22",
+        "role": "TA",
+        "loginId": "001234564S",
+        "section": "S101",
+        "lastActivity": "2020-11-05",
+        "totalActivity": "13:23:34"
+    },
+    {
         "_id": "890",
         "username": "elf_archer",
         "password": "legolas123",
