@@ -1,196 +1,59 @@
-import React from "react";
-// import { Link } from "react-router-dom";
-
-// // export default function Dashboard() {
-// //     return (
-// //         <div id="wd-dashboard">
-// //             <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
-// //             <h2 id="wd-dashboard-published">Published Courses (12)</h2> <hr />
-// //             <div id="wd-dashboard-courses" className="row">
-// //                 <div className="row row-cols-1 row-cols-md-5 g-4">
-// //                     <div className="wd-dashboard-course col" style={{ width: "270px" }}>
-// //                         <div className="card">
-// //                             <Link className="wd-dashboard-course-link text-decoration-none text-dark"
-// //                                 to="/Kanbas/Courses/1234/Home">
-// //                                 <img src="/images/reactjs.jpg" width="100%" />
-// //                                 <div className="card-body">
-// //                                     <h5 className="wd-dashboard-course-title card-title">
-// //                                         CS1234 React JS
-// //                                     </h5>
-// //                                     <p className="card-text">
-// //                                         Full Stack software developer
-// //                                     </p>
-// //                                     <button className="btn btn-primary"> Go </button>
-// //                                 </div>
-// //                             </Link>
-// //                         </div>
-// //                     </div>
-// //                     <div className="wd-dashboard-course col" style={{ width: "270px" }}>...</div>
-// //                     <div className="wd-dashboard-course col" style={{ width: "270px" }}>...</div>
-// //                     <div className="wd-dashboard-course col" style={{ width: "270px" }}>...</div>
-// //                 </div>
-// //             </div></div>
-// //     );
-// // }
-
-
-
-
-
-
-
-
-
-
-
-
-// //new
-// export default function Dashboard() {
-//     return (
-//         <div id="wd-dashboard">
-//             <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
-//             <h2 id="wd-dashboard-published">Published Courses (12)</h2> <hr />
-//             <div id="wd-dashboard-courses" className="row">
-//                 <div className="row row-cols-1 row-cols-md-5 g-4">
-//                     <div className="wd-dashboard-course col" style={{ width: "270px" }}>
-//                         <div className="card">
-//                             <Link className="wd-dashboard-course-link text-decoration-none text-dark"
-//                                 to="/Kanbas/Courses/1234/Home">
-//                                 <img src="/images/reactjs.jpg" width="100%" height="200px" />
-//                                 <div className="card-body">
-//                                     <h5 className="wd-dashboard-course-title card-title">
-//                                         CS1234 React JS
-//                                     </h5>
-//                                     <p className="card-text">
-//                                         202430_2 Spring 2024 Semester Full Term Grad
-//                                     </p>
-//                                     <button className="btn btn-primary"> Go </button>
-//                                 </div>
-//                             </Link>
-//                         </div>
-//                     </div>
-
-//                     <div className="wd-dashboard-course col" style={{ width: "270px" }}>
-//                         <div className="card">
-//                             <Link className="wd-dashboard-course-link text-decoration-none text-dark"
-//                                 to="/Kanbas/Courses/5678/Home">
-//                                 <img src="/images/python.jpg" width="100%" height="200px" />
-//                                 <div className="card-body">
-//                                     <h5 className="wd-dashboard-course-title card-title">
-//                                         CS5678 Python Programming
-//                                     </h5>
-//                                     <p className="card-text">
-//                                         202430_2 Spring 2024 Semester Full Term Grad
-//                                     </p>
-//                                     <button className="btn btn-primary"> Go </button>
-//                                 </div>
-//                             </Link>
-//                         </div>
-//                     </div>
-
-//                     <div className="wd-dashboard-course col" style={{ width: "270px" }}>
-//                         <div className="card">
-//                             <Link className="wd-dashboard-course-link text-decoration-none text-dark"
-//                                 to="/Kanbas/Courses/9101/Home">
-//                                 <img src="/images/nodejs.jpg" width="100%" height="200px" />
-//                                 <div className="card-body">
-//                                     <h5 className="wd-dashboard-course-title card-title">
-//                                         CS9101 Node.js
-//                                     </h5>
-//                                     <p className="card-text">
-//                                         202430_2 Spring 2024 Semester Full Term Grad
-//                                     </p>
-//                                     <button className="btn btn-primary"> Go </button>
-//                                 </div>
-//                             </Link>
-//                         </div>
-//                     </div>
-
-//                     <div className="wd-dashboard-course col" style={{ width: "270px" }}>
-//                         <div className="card">
-//                             <Link className="wd-dashboard-course-link text-decoration-none text-dark"
-//                                 to="/Kanbas/Courses/1121/Home">
-//                                 <img src="/images/java.jpg" width="100%" height="200px" />
-//                                 <div className="card-body">
-//                                     <h5 className="wd-dashboard-course-title card-title">
-//                                         CS1121 Java Programming
-//                                     </h5>
-//                                     <p className="card-text">
-//                                         202430_2 Spring 2024 Semester Full Term Grad
-//                                     </p>
-//                                     <button className="btn btn-primary"> Go </button>
-//                                 </div>
-//                             </Link>
-//                         </div>
-//                     </div>
-
-//                     <div className="wd-dashboard-course col" style={{ width: "270px" }}>
-//                         <div className="card">
-//                             <Link className="wd-dashboard-course-link text-decoration-none text-dark"
-//                                 to="/Kanbas/Courses/3141/Home">
-//                                 <img src="/images/machinelearning.jpg" width="100%" height="200px" />
-//                                 <div className="card-body">
-//                                     <h5 className="wd-dashboard-course-title card-title">
-//                                         CS3141 Machine Learning
-//                                     </h5>
-//                                     <p className="card-text">
-//                                         202430_2 Spring 2024 Semester Full Term Grad
-//                                     </p>
-//                                     <button className="btn btn-primary"> Go </button>
-//                                 </div>
-//                             </Link>
-//                         </div>
-//                     </div>
-
-//                     <div className="wd-dashboard-course col" style={{ width: "270px" }}>
-//                         <div className="card">
-//                             <Link className="wd-dashboard-course-link text-decoration-none text-dark"
-//                                 to="/Kanbas/Courses/2210/Home">
-//                                 <img src="/images/webdevelopment.jpg" width="100%" height="200px" />
-//                                 <div className="card-body">
-//                                     <h5 className="wd-dashboard-course-title card-title">
-//                                         CS2210 Web Development
-//                                     </h5>
-//                                     <p className="card-text">
-//                                         202430_2 Spring 2024 Semester Full Term Grad
-//                                     </p>
-//                                     <button className="btn btn-primary"> Go </button>
-//                                 </div>
-//                             </Link>
-//                         </div>
-//                     </div>
-
-//                     <div className="wd-dashboard-course col" style={{ width: "270px" }}>
-//                         <div className="card">
-//                             <Link className="wd-dashboard-course-link text-decoration-none text-dark"
-//                                 to="/Kanbas/Courses/4321/Home">
-//                                 <img src="/images/databases.jpg" width="100%" height="200px" />
-//                                 <div className="card-body">
-//                                     <h5 className="wd-dashboard-course-title card-title">
-//                                         CS4321 Databases
-//                                     </h5>
-//                                     <p className="card-text">
-//                                         202430_2 Spring 2024 Semester Full Term Grad
-//                                     </p>
-//                                     <button className="btn btn-primary"> Go </button>
-//                                 </div>
-//                             </Link>
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// }
-
-
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import * as db from "./Database";
-export default function Dashboard() {
-    const courses = db.courses;
+
+export default function Dashboard(
+    { courses, course, setCourse, addNewCourse,
+        deleteCourse, updateCourse }: {
+            courses: any[]; course: any; setCourse: (course: any) => void;
+            addNewCourse: () => void; deleteCourse: (course: any) => void;
+            updateCourse: () => void;
+        }) {
+    // const [courses, setCourses] = useState<any[]>(db.courses);
+    // const [course, setCourse] = useState<any>({
+    //     _id: "0", name: "New Course", number: "New Number",
+    //     startDate: "2023-09-10", endDate: "2023-12-15",
+    //     image: "/images/reactjs.jpg", description: "New Description"
+    // });
+    // const addNewCourse = () => {
+    //     const newCourse = {
+    //         ...course,
+    //         _id: new Date().getTime().toString()
+    //     };
+    //     setCourses([...courses, { ...course, ...newCourse }]);
+    // };
+    // const deleteCourse = (courseId: string) => {
+    //     setCourses(courses.filter((course) => course._id !== courseId));
+    // };
+    // const updateCourse = () => {
+    //     setCourses(
+    //         courses.map((c) => {
+    //             if (c._id === course._id) {
+    //                 return course;
+    //             } else {
+    //                 return c;
+    //             }
+    //         })
+    //     );
+    // };
     return (
         <div id="wd-dashboard">
             <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
+            <h5>New Course
+                <button className="btn btn-primary float-end"
+                    id="wd-add-new-course-click"
+                    onClick={addNewCourse} > Add </button>
+                <button className="btn btn-warning float-end me-2"
+                    onClick={updateCourse} id="wd-update-course-click">
+                    Update
+                </button>
+            </h5>
+            <br />
+            <input defaultValue={course.name} className="form-control mb-2"
+                onChange={(e) => setCourse({ ...course, name: e.target.value })} />
+            <textarea defaultValue={course.description} className="form-control"
+                onChange={(e) => setCourse({ ...course, description: e.target.value })} />
+            <hr />
             <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2> <hr />
             <div id="wd-dashboard-courses" className="row">
                 <div className="row row-cols-1 row-cols-md-5 g-4">
@@ -205,7 +68,24 @@ export default function Dashboard() {
                                             {course.name} </h5>
                                         <p className="wd-dashboard-course-title card-text overflow-y-hidden" style={{ maxHeight: 100 }}>
                                             {course.description} </p>
-                                        <button className="btn btn-primary"> Go </button>
+                                        <button className="btn btn-primary"> Go
+                                        </button>
+
+                                        <button onClick={(event) => {
+                                            event.preventDefault();
+                                            deleteCourse(course._id);
+                                        }} className="btn btn-danger float-end"
+                                            id="wd-delete-course-click">
+                                            Delete
+                                        </button>
+                                        <button id="wd-edit-course-click"
+                                            onClick={(event) => {
+                                                event.preventDefault();
+                                                setCourse(course);
+                                            }}
+                                            className="btn btn-warning me-2 float-end" >
+                                            Edit
+                                        </button>
                                     </div>
                                 </Link>
                             </div>
