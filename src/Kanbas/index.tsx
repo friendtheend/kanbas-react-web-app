@@ -1,4 +1,75 @@
-import { Routes, Route, Navigate, useNavigate } from "react-router";
+// import { Routes, Route, Navigate, useNavigate } from "react-router";
+// import Account from "./Account";
+// import React from "react";
+// import Dashboard from "./Dashboard";
+// import KanbasNavigation from "./Navigation";
+// import Courses from "./Courses";
+// import "./styles.css";
+// import "bootstrap/dist/js/bootstrap.bundle.min.js";
+// import * as db from "./Database";
+// import { useState } from "react";
+// import store from "./store";
+// import { Provider } from "react-redux";
+// import ProtectedRoute from "./Account/ProtectedRoute";
+
+// export default function Kanbas() {
+//     const navigate = useNavigate();
+//     const [courses, setCourses] = useState<any[]>(db.courses);
+//     const [course, setCourse] = useState<any>({
+//         _id: "1234", name: "New Course", number: "New Number",
+//         startDate: "2023-09-10", endDate: "2023-12-15", description: "New Description",
+//     });
+//     const addNewCourse = () => {
+//         setCourses([...courses, { ...course, _id: new Date().getTime().toString() }]);
+//         navigate(`/Kanbas/Dashboard`);
+//     };
+//     const deleteCourse = (courseId: any) => {
+//         setCourses(courses.filter((course) => course._id !== courseId));
+//         navigate(`/Kanbas/Dashboard`);
+//     };
+//     const updateCourse = () => {
+//         setCourses(
+//             courses.map((c) => {
+//                 if (c._id === course._id) {
+//                     return course;
+//                 } else {
+//                     return c;
+//                 }
+//             })
+//         );
+//         navigate(`/Kanbas/Dashboard`);
+//     };
+//     return (
+//         <Provider store={store}>
+//             <div id="wd-kanbas">
+//                 <KanbasNavigation />
+//                 <div className="wd-main-content-offset p-3">
+//                     <Routes>
+//                         <Route path="/" element={<Navigate to="Account" />} />
+//                         <Route path="/Account/*" element={<Account />} />
+//                         <Route path="/Dashboard" element={
+//                             <ProtectedRoute>
+//                                 <Dashboard
+//                                     courses={courses}
+//                                     course={course}
+//                                     setCourse={setCourse}
+//                                     addNewCourse={addNewCourse}
+//                                     deleteCourse={deleteCourse}
+//                                     updateCourse={updateCourse} />
+//                             </ProtectedRoute>
+//                         } />
+//                         <Route path="/Courses/:cid/*" element={<ProtectedRoute><Courses courses={courses} /> </ProtectedRoute>} />
+//                         <Route path="/Calendar" element={<h1>Calendar</h1>} />
+//                         <Route path="/Inbox" element={<h1>Inbox</h1>} />
+//                     </Routes>
+
+//                 </div>
+//             </div>
+//         </Provider>
+//     );
+// }
+
+import { Routes, Route, Navigate, useNavigate, useParams } from "react-router";
 import Account from "./Account";
 import React from "react";
 import Dashboard from "./Dashboard";
@@ -9,7 +80,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import * as db from "./Database";
 import { useState } from "react";
 import store from "./store";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import ProtectedRoute from "./Account/ProtectedRoute";
 
 export default function Kanbas() {
@@ -19,6 +90,7 @@ export default function Kanbas() {
         _id: "1234", name: "New Course", number: "New Number",
         startDate: "2023-09-10", endDate: "2023-12-15", description: "New Description",
     });
+
     const addNewCourse = () => {
         setCourses([...courses, { ...course, _id: new Date().getTime().toString() }]);
         navigate(`/Kanbas/Dashboard`);
@@ -39,6 +111,25 @@ export default function Kanbas() {
         );
         navigate(`/Kanbas/Dashboard`);
     };
+
+    const CourseRoute = () => {
+        const { cid } = useParams(); // 获取课程 ID
+        const currentUser = useSelector((state: any) => state.accountReducer.currentUser);
+        const enrollments = useSelector((state: any) => state.enrollmentReducer);
+
+        // 检查当前用户是否为学生以及是否已注册该课程
+        const isEnrolled = enrollments.some(
+            (enrollment: { course: string | undefined; user: any; }) => enrollment.course === cid && enrollment.user === currentUser._id
+        );
+
+        // 如果是 FACULTY，允许访问所有课程；如果是 STUDENT，则要求已注册
+        if (currentUser.role === "FACULTY" || isEnrolled) {
+            return <Courses courses={courses} />;
+        } else {
+            return <Navigate to="/Kanbas/Dashboard" />;
+        }
+    };
+
     return (
         <Provider store={store}>
             <div id="wd-kanbas">
@@ -58,7 +149,12 @@ export default function Kanbas() {
                                     updateCourse={updateCourse} />
                             </ProtectedRoute>
                         } />
-                        <Route path="/Courses/:cid/*" element={<ProtectedRoute><Courses courses={courses} /> </ProtectedRoute>} />
+                        {/* 在 ProtectedRoute 内部调用 CourseRoute 组件 */}
+                        <Route path="/Courses/:cid/*" element={
+                            <ProtectedRoute>
+                                <CourseRoute />
+                            </ProtectedRoute>
+                        } />
                         <Route path="/Calendar" element={<h1>Calendar</h1>} />
                         <Route path="/Inbox" element={<h1>Inbox</h1>} />
                     </Routes>
@@ -67,4 +163,3 @@ export default function Kanbas() {
         </Provider>
     );
 }
-
