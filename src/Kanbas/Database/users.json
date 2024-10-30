@@ -15,8 +15,8 @@
     },
     {
         "_id": "234",
-        "username": "dark_knight",
-        "password": "wayne123",
+        "username": "def",
+        "password": "123",
         "firstName": "Bruce",
         "lastName": "Wayne",
         "email": "bruce@wayne.com",
@@ -79,6 +79,20 @@
         "dob": "1368-09-22",
         "role": "FACULTY",
         "loginId": "001234567S",
+        "section": "S101",
+        "lastActivity": "2020-12-02",
+        "totalActivity": "44:33:22"
+    },
+    {
+        "_id": "6789",
+        "username": "admin",
+        "password": "123",
+        "firstName": "Frodo22",
+        "lastName": "Baggin22s",
+        "email": "frodo222@shire.com",
+        "dob": "1368-09-22",
+        "role": "FACULTY",
+        "loginId": "0012345637S",
         "section": "S101",
         "lastActivity": "2020-12-02",
         "totalActivity": "44:33:22"

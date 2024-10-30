@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router";
+import { Routes, Route, Navigate, useNavigate } from "react-router";
 import Account from "./Account";
 import React from "react";
 import Dashboard from "./Dashboard";
@@ -13,6 +13,7 @@ import { Provider } from "react-redux";
 import ProtectedRoute from "./Account/ProtectedRoute";
 
 export default function Kanbas() {
+    const navigate = useNavigate();
     const [courses, setCourses] = useState<any[]>(db.courses);
     const [course, setCourse] = useState<any>({
         _id: "1234", name: "New Course", number: "New Number",
@@ -20,9 +21,11 @@ export default function Kanbas() {
     });
     const addNewCourse = () => {
         setCourses([...courses, { ...course, _id: new Date().getTime().toString() }]);
+        navigate(`/Kanbas/Dashboard`);
     };
     const deleteCourse = (courseId: any) => {
         setCourses(courses.filter((course) => course._id !== courseId));
+        navigate(`/Kanbas/Dashboard`);
     };
     const updateCourse = () => {
         setCourses(
@@ -34,31 +37,9 @@ export default function Kanbas() {
                 }
             })
         );
+        navigate(`/Kanbas/Dashboard`);
     };
     return (
-        // <div id="wd-kanbas">
-        //     {/* <table> */}
-        //     {/* <tr>
-        //             <td valign="top"> */}
-        //     <KanbasNavigation />
-        //     {/* </td>
-        //             <td valign="top"> */}
-        //     <div className="wd-main-content-offset p-3">
-
-        //         <Routes>
-        //             <Route path="/Account/*" element={<Account />} />
-        //             <Route path="/" element={<Navigate to="/Kanbas/Account" />} />
-        //             <Route path="/Dashboard" element={<Dashboard />} />
-        //             <Route path="/Courses/:cid/*" element={<Courses />} />
-        //             <Route path="/Calendar" element={<h1>Calendar</h1>} />
-        //             <Route path="/Inbox" element={<h1>Inbox</h1>} />
-        //         </Routes>
-
-        //         {/* </td>
-        //         </tr> */}
-        //         {/* </table> */}
-        //     </div>
-        // </div>
         <Provider store={store}>
             <div id="wd-kanbas">
                 <KanbasNavigation />
