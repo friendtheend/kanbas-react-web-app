@@ -1,54 +1,8 @@
-// import React from "react";
-// import { Link } from "react-router-dom";
-
-// export default function Profile() {
-//     return (
-//         <div id="wd-profile-screen">
-//             <h1>Profile</h1>
-//             <input id="wd-username"
-//                 value="alice"
-//                 placeholder="username"
-//                 className="form-control mb-2" />
-//             <input id="wd-password"
-//                 value="123"
-//                 placeholder="password"
-//                 type="password"
-//                 className="form-control mb-2" />
-//             <input id="wd-firstname"
-//                 value="Alice"
-//                 placeholder="First Name"
-//                 className="form-control mb-2" />
-//             <input id="wd-lastname"
-//                 value="Wonderland"
-//                 placeholder="lastname"
-//                 className="form-control mb-2" />
-//             <input id="wd-dob"
-//                 value="2000-01-01"
-//                 type="date"
-//                 className="form-control mb-2" />
-//             <input id="wd-email"
-//                 value="alice@wonderland.com"
-//                 type="email"
-//                 className="form-control mb-2" />
-//             <select id="wd-role" className="form-control mb-2">
-//                 <option>USER</option>
-//                 <option>ADMIN</option>
-//                 <option>FACULTY</option>
-//                 <option>STUDENT</option>
-//             </select>
-
-
-//             <Link id="wd-signup-btn"
-//                 to="/Kanbas/Account/Signin"
-//                 className="btn btn-danger w-100">
-//                 Sign out </Link>
-//         </div>
-//     );
-// }
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setCurrentUser } from "./reducer";
+import * as client from "./client";
 import React from "react";
 
 export default function Profile() {
@@ -56,11 +10,18 @@ export default function Profile() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { currentUser } = useSelector((state: any) => state.accountReducer);
+    const updateProfile = async () => {
+        const updatedProfile = await client.updateUser(profile);
+        dispatch(setCurrentUser(updatedProfile));
+    };
+
+
     const fetchProfile = () => {
         if (!currentUser) return navigate("/Kanbas/Account/Signin");
         setProfile(currentUser);
     };
-    const signout = () => {
+    const signout = async () => {
+        await client.signout();
         dispatch(setCurrentUser(null));
         navigate("/Kanbas/Account/Signin");
     };
@@ -82,11 +43,13 @@ export default function Profile() {
                         onChange={(e) => setProfile({ ...profile, dob: e.target.value })} type="date" />
                     <input defaultValue={profile.email} id="wd-email" className="form-control mb-2"
                         onChange={(e) => setProfile({ ...profile, email: e.target.value })} />
-                    <select onChange={(e) => setProfile({ ...profile, role: e.target.value })}
+                    <select value={profile.role}
+                        onChange={(e) => setProfile({ ...profile, role: e.target.value })}
                         className="form-control mb-2" id="wd-role">
-                        <option value="USER">User</option> <option value="ADMIN">Admin</option>
-                        <option value="FACULTY">Faculty</option> <option value="STUDENT">Student</option>
+                        <option value="USER">User</option>            <option value="ADMIN">Admin</option>
+                        <option value="FACULTY">Faculty</option>      <option value="STUDENT">Student</option>
                     </select>
+                    <button onClick={updateProfile} className="btn btn-primary w-100 mb-2"> Update </button>
                     <button onClick={signout} className="btn btn-danger w-100 mb-2" id="wd-signout-btn">
                         Sign out
                     </button>

@@ -1,160 +1,128 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useParams, useNavigate } from "react-router";
-import { BsCheckCircle, BsThreeDotsVertical, BsGripVertical, BsTrash } from 'react-icons/bs';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { FaPlus, FaTrash } from "react-icons/fa6";
+import { BsGripVertical } from 'react-icons/bs';
+import { BiSolidDownArrow } from 'react-icons/bi';
+import { MdAssignment } from 'react-icons/md'
+import { FaSearch } from "react-icons/fa";
+import AssControlButtons from "./AssControlButtons";
+import LessonControlButtons from "./LessonControlButtons";
+import { useParams } from "react-router";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteassignments } from './reducer';
-import { SlNote } from 'react-icons/sl';
-import { FaMagnifyingGlass } from 'react-icons/fa6';
+import { setAssignments, deleteAssignment, } from "./reducer";
+import Assignmentdeleter from "./LessonDeleter";
+import * as coursesClient from "../client";
+import * as assignmentsClient from "./client";
+import React from "react";
 
-export default function Assignments() {
-    const { cid } = useParams();
-    const navigate = useNavigate();
-    const dispatch = useDispatch(); // 使用 useDispatch
+export default function Assignments({ assignmentName, setassignmentName }:
+  { assignmentName: string; setassignmentName: (title: string) => void; }) {
 
-    // 使用 useSelector 从 Redux store 中获取 assignments 状态
-    const assignments = useSelector((state: any) => state.assignments.assignments);
+  const { cid } = useParams();
+  const dispatch = useDispatch()
+  const { assignments } = useSelector((state: any) => state.assignmentReducer);
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const [selectedAssignmentID, setSelectedAssignmentID] = useState("Null");
 
-    // 本地状态用于控制删除对话框的显示
-    const [showDeleteDialog, setShowDeleteDialog] = useState(false);
-    const [assignmentToDelete, setAssignmentToDelete] = useState<{ _id: string } | null>(null);
+  const fetchAssignments = async () => {
+    const assignments = await coursesClient.findAssignmentsForCourse(cid as string);
+    dispatch(setAssignments(assignments));
+  };
+  useEffect(() => {
+    fetchAssignments();
+  }, []);
 
-    const handleAddAssignment = () => {
-        navigate(`/Kanbas/Courses/${cid}/Assignments/newAssignment`);
-    };
+  const removeAssignment = async (assignmentId: string) => {
+    await assignmentsClient.deleteAssignment(assignmentId);
+    console.log(assignmentId)
+    dispatch(deleteAssignment(assignmentId));
+  };
 
-    // 处理删除按钮的点击，显示确认对话框
-    const handleDeleteClick = (assignment: any) => {
-        setAssignmentToDelete(assignment);
-        setShowDeleteDialog(true);
-    };
 
-    // 确认删除作业
-    const confirmDelete = () => {
-        if (assignmentToDelete) {
-            dispatch(deleteassignments(assignmentToDelete._id));
-        }
-        setShowDeleteDialog(false);
-        setAssignmentToDelete(null);
-    };
+  // console.log(assignments)
 
-    // 取消删除
-    const cancelDelete = () => {
-        setShowDeleteDialog(false);
-        setAssignmentToDelete(null);
-    };
+  return (
+    <div id="wd-assignments">
 
-    return (
-        <div id="wd-assignments" className="p-4">
-            {/* 删除对话框 */}
-            {showDeleteDialog && (
-                <div className="delete-dialog-overlay" style={overlayStyle}>
-                    <div className="delete-dialog" style={dialogStyle}>
-                        <h5>Confirm Delete</h5>
-                        <p>Are you sure you want to delete this assignment?</p>
-                        <div className="delete-dialog-buttons">
-                            <button className="btn btn-secondary me-2" onClick={cancelDelete}>Cancel</button>
-                            <button className="btn btn-danger" onClick={confirmDelete}>Delete</button>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            <div className="d-flex justify-content-between align-items-center mb-3">
-                {/* 搜索框部分 */}
-                <div className="input-group w-50">
-                    <span className="input-group-text" id="basic-addon1" style={{ backgroundColor: 'white', border: '1px solid #ced4da' }}>
-                        <FaMagnifyingGlass />
-                    </span>
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Search..."
-                        aria-label="Search"
-                        aria-describedby="basic-addon1"
-                    />
-                </div>
-                {/* 按钮部分 */}
-                <div>
-                    <button className="btn btn-outline-secondary me-2">+ Group</button>
-                    <button className="btn btn-danger" onClick={handleAddAssignment}>+ Assignment</button>
-                </div>
-            </div>
-
-            <div className="wd-module list-group-item p-0 mb-5 fs-5 border border-3 border-gray">
-                <div className="wd-title p-3 ps-2 bg-secondary d-flex justify-content-between align-items-center">
-                    <div>
-                        <BsGripVertical className="me-2 fs-3" />
-                        ASSIGNMENTS
-                    </div>
-                    <div className="d-flex align-items-center justify-content-end">
-                        <span className="text-muted me-3">40% of Total</span>
-                    </div>
-                </div>
-
-                <ul className="list-group">
-                    {assignments
-                        .filter((assignment: any) => assignment.course === cid)
-                        .map((assignment: any) => (
-                            <li key={assignment._id} className="list-group-item d-flex justify-content-between align-items-center" style={{ borderLeft: "4px solid green", borderBottom: "1px solid black" }}>
-                                <div className="d-flex align-items-center">
-                                    <BsGripVertical className="me-2 fs-3" />
-                                    <SlNote />
-                                    <i className="bi bi-file-earmark-text me-2 fs-5"></i>
-                                    <div>
-                                        <Link
-                                            className="wd-assignment-link fw-bold text-primary"
-                                            to={`/Kanbas/Courses/${cid}/Assignments/${assignment._id}`}
-                                        >
-                                            {assignment.title}
-                                        </Link>
-                                        <p className="mb-0">
-                                            <span className="text-danger" style={{ display: "inline" }}>{assignment.description}</span> |
-                                            <strong> Not available until: {assignment.availableDate}</strong> |
-                                            <strong> Due: {assignment.dueDate}</strong> |
-                                            <span className="fw-bold text-secondary"> {assignment.points} pts</span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="d-flex align-items-center">
-                                    <BsTrash
-                                        className="text-danger fs-4"
-                                        role="button"
-                                        onClick={() => handleDeleteClick(assignment)}
-                                    />
-                                    &nbsp;
-                                    &nbsp;
-                                    <BsCheckCircle className="text-success me-3 fs-4" />
-                                    <BsThreeDotsVertical className="fs-5" />
-                                </div>
-                            </li>
-                        ))}
-                </ul>
-            </div>
+      <div className="mb-3 row">
+        <div className="col-6">
+          <div className="input-group">
+            <span className="input-group-text border-end-0 bg-transparent">
+              <FaSearch />
+            </span>
+            <input type="text" className="form-control p-2 border-start-0" placeholder="Search..." />
+          </div>
         </div>
-    );
+
+        {currentUser.role === "FACULTY" && (
+          <>
+            <div className="col-6">
+              <Link key={`#/Kanbas/Courses/${cid}/Assignments/`} to={`TEMP`} className="text-white fs-5 text-decoration-none">
+                <button id="wd-add-module-btn" className="btn btn-lg btn-danger me-1 float-end">
+                  <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
+                  Assignment
+                </button>
+              </Link>
+              <button id="wd-add-module-btn" className="btn btn-lg btn-secondary me-1 float-end">
+                <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
+                Group
+              </button>
+            </div>
+          </>
+        )}
+      </div>
+
+
+      <ul id="wd-modules" className="list-group rounded-0">
+        <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
+          <div className="wd-title p-3 ps-2 bg-secondary">
+            <BsGripVertical className="me-2 fs-2" />
+            <BiSolidDownArrow className="me-2 fs-6" />
+            <strong>ASSIGNMENTS</strong>
+            <AssControlButtons />
+          </div>
+
+          {assignments
+            .map((assignment: any) => (
+              <li className="wd-assignment list-group-item">
+                <div className="row align-items-center gx-0">
+                  <div className="col-auto fs-2" style={{ paddingRight: "20px" }}>
+                    <BsGripVertical className="me-2 text-secondary" />
+                    <MdAssignment className="text-success" />
+                  </div>
+
+                  <div className="col">
+                    <Link key={`#/Kanbas/Courses/${cid}/Assignments/`} to={`${assignment._id}`} className="text-dark fs-5 text-decoration-none">
+                      <strong>{assignment.title}</strong>
+                    </Link>
+                    <p style={{ margin: "0" }}><span className="text-danger"><strong> Multiple Modules </strong> </span>| <strong> Not available until </strong> {assignment.available_date} |</p>
+                    <strong> Due </strong> {assignment.due_date} | {assignment.points} pts
+                  </div>
+
+                  {currentUser.role === "FACULTY" && (
+                    <>
+                      <div className="col-auto">
+                        <FaTrash className="text-danger me-2 mb-1" data-bs-toggle="modal" data-bs-target="#wd-delete-assignment-dialog"
+                          onClick={() => {
+                            setSelectedAssignmentID(assignment._id);
+                          }} />
+                        <LessonControlButtons />
+
+
+                      </div>
+                    </>
+                  )}
+                  <Assignmentdeleter dialogTitle="Delete"
+                    assignmentID={selectedAssignmentID}
+                    deleteAssignment={(assignmentID) =>
+                      removeAssignment(assignmentID)} />
+                </div>
+              </li>
+            ))}
+        </li>
+      </ul>
+
+    </div>
+  );
 }
 
-// 自定义的样式，用于对话框和覆盖层
-const overlayStyle: React.CSSProperties = {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 1000,
-};
-
-const dialogStyle: React.CSSProperties = {
-    backgroundColor: '#fff',
-    padding: '20px',
-    borderRadius: '8px',
-    boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.3)',
-    width: '400px',
-    maxWidth: '100%',
-};

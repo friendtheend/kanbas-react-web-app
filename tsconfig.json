@@ -21,6 +21,8 @@
     "jsx": "react"
   },
   "include": [
-    "src"
+    "src",
+    "src/Labs/Lab5/PathParameters.tsx",
+    "kanbas-node-server-app/Lab5/PathParameters.js"
   ]
 }
